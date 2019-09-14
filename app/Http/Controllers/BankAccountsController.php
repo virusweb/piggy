@@ -13,7 +13,7 @@ class BankAccountsController extends Controller
     {
         $hashids = new Hashids();
         $bank_accounts = $bank_accounts->paginate(15);
-        return view('accounts.index', ['bank_accounts' => $bank_accounts]);
+        return view('accounts.index', ['bank_accounts' => $bank_accounts,'hash' => $hashids]);
     }
 
     public function create()
@@ -27,8 +27,11 @@ class BankAccountsController extends Controller
         return redirect()->route('accounts.index')->withStatus(__($response));
     }
 
-    public function edit(bank_accounts $bank)
+    public function edit($id)
     {   
+        $hashids = new Hashids();
+        $id = $hashids->decodeHex($id);
+        $bank = bank_accounts::findOrFail($id);
         return view('accounts.edit', compact('bank'));
     }
 

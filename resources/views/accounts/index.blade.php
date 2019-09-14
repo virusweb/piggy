@@ -71,7 +71,7 @@
                             <form action="{{ route('bank.destroy',$hash->encode($bank_account->id)) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('bank.edit', $hash->encode($bank_account->id)) }}">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('bank.edit',$hash->encodeHex($bank_account->id)) }}">
                                   <i class="material-icons">edit</i>
                                   <div class="ripple-container"></div>
                                 </a>

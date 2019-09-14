@@ -90,7 +90,7 @@
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
-                {{ __('I agree with the ') }} <a href="#">{{ __('Privacy Policy') }}</a>
+                {{ __('I agree with the ') }} <a href="#" data-toggle="modal" data-target="#tcModal">{{ __('Privacy Policy') }}</a>
               </label>
             </div>
           </div>
@@ -103,3 +103,23 @@
   </div>
 </div>
 @endsection
+
+
+<div class="modal fade" id="tcModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Privacy Policy</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        All Terms and conditions will be here
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
