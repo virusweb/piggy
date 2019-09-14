@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('upgrade');
 });
 
-Route::group(['middleware' => 'admin'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
+Route::group(['middleware' => ['admin','prevent-back-history']], function () {
+	Route::resource('user', 'UserController');
 	Route::resource('bank', 'BankAccountsController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
