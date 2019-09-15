@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Hashids\Hashids;
+use Hash;
 
 class UserController extends Controller
 {
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $hashids = new Hashids();
+        return view('users.index', ['users' => $model->paginate(15),'hash' => $hashids]);
     }
 
 
@@ -20,14 +22,18 @@ class UserController extends Controller
     }
 
 
-    public function store(UserRequest $request, User $model)
+    public function store(UserRequest $request, User $user)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        $data = $request->merge(['password' => Hash::make($request->get('password'))])->all();
+        $response = $user->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
+        $hashids = new Hashids();
+        $id = $hashids->decodeHex($id);
+        $user = User::findOrFail($id);
         return view('users.edit', compact('user'));
     }
 

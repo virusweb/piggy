@@ -68,7 +68,7 @@
                             {{ $bank_account->balance }}
                           </td>
                           <td class="td-actions text-right">
-                            <form action="{{ route('bank.destroy',$hash->encode($bank_account->id)) }}" method="post">
+                            <form action="{{ route('bank.destroy',$hash->encodeHex($bank_account->id)) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('bank.edit',$hash->encodeHex($bank_account->id)) }}">

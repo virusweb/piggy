@@ -24,7 +24,7 @@ class BankAccountsController extends Controller
     public function store(Request $request,bank_accounts $bank_accounts)
     {
         $response = $bank_accounts->create($request->merge(['user_id' => Auth::id()])->all());
-        return redirect()->route('accounts.index')->withStatus(__($response));
+        return redirect()->route('bank.index')->withStatus(__($response));
     }
 
     public function edit($id)
@@ -41,9 +41,11 @@ class BankAccountsController extends Controller
         return redirect()->route('bank.index')->withStatus(__($response));
     }
 
-    public function destroy(bank_accounts $bank)
+    public function destroy($id)
     {
-        $response = $bank->delete();
+        $hashids = new Hashids();
+        $id = $hashids->decodeHex($id);
+        $response = bank_accounts::destroy($id);
         return redirect()->route('bank.index')->withStatus(__($response));
     }
 }

@@ -61,7 +61,7 @@
                               <form action="{{ route('user.destroy', $user) }}" method="post">
                                   @csrf
                                   @method('delete')
-                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $user) }}" data-original-title="" title="">
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $hash->encodeHex($user->id)) }}" data-original-title="" title="">
                                     <i class="material-icons">edit</i>
                                     <div class="ripple-container"></div>
                                   </a>
