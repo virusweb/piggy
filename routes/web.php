@@ -8,6 +8,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::resource('bank', 'BankAccountsController');
 	Route::get('table-list', function () {
 		return view('pages.table_list');
 	})->name('table');
@@ -39,7 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => ['admin']], function () {
 	Route::resource('user', 'UserController');
-	Route::resource('bank', 'BankAccountsController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);

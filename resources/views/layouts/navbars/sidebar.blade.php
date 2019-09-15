@@ -18,6 +18,7 @@
             <p>{{ __('Bank Accounts') }}</p>
         </a>
       </li>
+      @if(Auth::user()->role === 'admin')
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
@@ -30,6 +31,7 @@
           </ul>
         </div>
       </li>
+      @endif
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>

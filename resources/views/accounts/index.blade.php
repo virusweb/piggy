@@ -51,11 +51,15 @@
                       <th>
                         {{ __('Balance') }}
                       </th>
+                      <th>
+                        {{ __('Account Type') }}
+                      </th>
                       <th class="text-right">
                         {{ __('Actions') }}
                       </th>
                     </thead>
                     <tbody>
+                    @if($bank_accounts->count() > 0)
                       @foreach($bank_accounts as $bank_account)
                         <tr>
                           <td>
@@ -65,7 +69,10 @@
                             {{ $bank_account->account_no }}
                           </td>
                           <td>
-                            {{ $bank_account->balance }}
+                            <span class="badge badge-success">{{ number_format($bank_account->balance,2) }}</span>
+                          </td>
+                          <td>
+                            {{ $bank_account->account_type }}
                           </td>
                           <td class="td-actions text-right">
                             <form action="{{ route('bank.destroy',$hash->encodeHex($bank_account->id)) }}" method="post">
@@ -84,6 +91,9 @@
                           </td>
                         </tr>
                       @endforeach
+                    @else
+                      <td colspan = "5" align = "center">No Bank Accounts</td>
+                    @endif
                     </tbody>
                   </table>
                 </div>
