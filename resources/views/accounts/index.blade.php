@@ -54,6 +54,9 @@
                       <th>
                         {{ __('Account Type') }}
                       </th>
+                       <th>
+                        {{ __('Account User') }}
+                      </th>
                       <th class="text-right">
                         {{ __('Actions') }}
                       </th>
@@ -69,10 +72,17 @@
                             {{ $bank_account->account_no }}
                           </td>
                           <td>
-                            <span class="badge badge-success">{{ number_format($bank_account->balance,2) }}</span>
+                            <span class="badge badge-success">
+                              {{ number_format($bank_account->balance,2) }}
+                            </span>
                           </td>
                           <td>
                             {{ $bank_account->account_type }}
+                          </td>
+                           <td>
+                            <span class="badge badge-info">
+                              {{ $bank_account->user->name }}
+                            </span>
                           </td>
                           <td class="td-actions text-right">
                             <form action="{{ route('bank.destroy',$hash->encodeHex($bank_account->id)) }}" method="post">
