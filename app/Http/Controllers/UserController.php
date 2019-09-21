@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Hashids\Hashids;
-use Hash;
 
 class UserController extends Controller
 {

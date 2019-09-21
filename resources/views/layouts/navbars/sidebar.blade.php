@@ -32,6 +32,12 @@
         </div>
       </li>
       @endif
+      <li class="nav-item{{ $activePage == 'fd' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('fd.index') }}">
+          <i class="material-icons">money</i>
+            <p>{{ __('Fixed Deposits') }}</p>
+        </a>
+      </li>
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
