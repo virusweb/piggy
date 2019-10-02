@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\bank_accounts;
+use App\Models\bank_accounts;
 use Illuminate\Http\Request;
 use Hashids\Hashids;
 

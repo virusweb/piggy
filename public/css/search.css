@@ -1,0 +1,8 @@
+.ui-autocomplete{
+    background: white;
+    cursor: pointer;
+    overflow: scroll;
+    max-width: 42%;
+    max-height: 150px;
+    text-transform: uppercase;
+}

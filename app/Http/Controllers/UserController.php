@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Hashids\Hashids;
 
@@ -14,12 +14,10 @@ class UserController extends Controller
         return view('users.index', ['users' => $model->paginate(15),'hash' => $hashids]);
     }
 
-
     public function create()
     {
         return view('users.create');
     }
-
 
     public function store(UserRequest $request, User $user)
     {

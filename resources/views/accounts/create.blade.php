@@ -24,7 +24,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-name" type="text" placeholder="{{ __('Ex : State Bank of India') }}" value="{{ old('bank_name') }}" required="true" aria-required="true"/>
+                      <input class="typeahead form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-name" type="text" placeholder="{{ __('Ex : State Bank of India') }}" value="{{ old('bank_name') }}" required="true" aria-required="true"/>
                       @if ($errors->has('bank_name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
                       @endif

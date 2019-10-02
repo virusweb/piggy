@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\fixed_deposits;
+use App\Models\fixed_deposits;
 use Illuminate\Http\Request;
 use Hashids\Hashids;
 
