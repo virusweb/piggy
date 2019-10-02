@@ -102,7 +102,7 @@
                         </tr>
                       @endforeach
                     @else
-                      <td colspan = "5" align = "center">No Bank Accounts</td>
+                      <td colspan="5" class="text-center">No Bank Accounts</td>
                     @endif
                     </tbody>
                   </table>
