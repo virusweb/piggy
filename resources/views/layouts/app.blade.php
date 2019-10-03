@@ -17,6 +17,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
     <link href="{{ asset('css') }}/search.css" rel="stylesheet" />
+    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -73,6 +74,7 @@
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="{{ asset('js') }}/search.js"></script>
+        <script src="{{ asset('js') }}/removelink.js"></script>
         @stack('js')
     </body>
 </html>
