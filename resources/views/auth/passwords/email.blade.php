@@ -4,7 +4,7 @@
 <div class="container" style="height: auto;">
   <div class="row align-items-center">
     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-      <form class="form" method="POST" action="{{ route('password.email') }}">
+      <form class="form" method="POST" action="{{ route('password.email') }}" onsubmit="loadFGPPrgress();">
         @csrf
 
         <div class="card card-login card-hidden mb-3">
@@ -45,6 +45,11 @@
           </div>
         </div>
       </form>
+      <div id="fgp-prgs" style="display: none;">
+          <div class="progress">
+            <div id="fgp-progress-bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
     </div>
   </div>
 </div>

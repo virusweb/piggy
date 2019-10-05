@@ -1,8 +1,8 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Material Dashboard')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Material Dashboard'),'titlePage' => 'Access Denied'])
 
 @section('content')
 <div class="container" style="height: auto;">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="margin-top: 15%;">
       <div class="col-lg-7 col-md-8">
           <div class="card card-login card-hidden mb-3">
             <div class="card-header card-header-primary text-center">
@@ -19,6 +19,7 @@
                 
                 {{ __('Before proceeding, please check your email for a verification link.') }}
                 
+                {{Route::has('verification')}}
                 @if (Route::has('verification.resend'))
                     {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>
                 @endif

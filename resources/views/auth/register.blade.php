@@ -4,7 +4,7 @@
     <div class="container" style="height: auto;">
       <div class="row align-items-center">
         <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-          <form class="form" method="POST" action="{{ route('register') }}">
+          <form class="form" method="POST" action="{{ route('register') }}" onsubmit="loadPrgress();">
             @csrf
 
             <div class="card card-login card-hidden mb-3">
@@ -34,7 +34,7 @@
                     <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required>
                   </div>
                   @if ($errors->has('name'))
-                  <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
+                  <div id="name-error" class="error text-danger ml-5 pl-3" for="name" style="display: block;">
                     <strong>{{ $errors->first('name') }}</strong>
                   </div>
                   @endif
@@ -49,7 +49,7 @@
                     <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email') }}" required>
                   </div>
                   @if ($errors->has('email'))
-                  <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
+                  <div id="email-error" class="error text-danger ml-5 pl-3" for="email" style="display: block;">
                     <strong>{{ $errors->first('email') }}</strong>
                   </div>
                   @endif
@@ -63,11 +63,6 @@
                     </div>
                     <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required>
                   </div>
-                  @if ($errors->has('password'))
-                  <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                    <strong>{{ $errors->first('password') }}</strong>
-                  </div>
-                  @endif
                 </div>
                 <div class="bmd-form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }} mt-3">
                   <div class="input-group">
@@ -79,9 +74,14 @@
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirm Password...') }}" required>
                   </div>
                   @if ($errors->has('password_confirmation'))
-                  <div id="password_confirmation-error" class="error text-danger pl-3" for="password_confirmation" style="display: block;">
-                    <strong>{{ $errors->first('password_confirmation') }}</strong>
-                  </div>
+                    <div id="password_confirmation-error" class="error text-danger pl-3" for="password_confirmation" style="display: block;">
+                      <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </div>
+                  @endif
+                  @if ($errors->has('password'))
+                    <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </div>
                   @endif
                 </div>
                 <div class="form-check mr-auto ml-3 mt-3">
@@ -99,22 +99,27 @@
               </div>
             </div>
           </form>
+          <div id="reg-prgs" style="display: none;">
+            <div class="progress">
+              <div id="reg-progress-bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     @endsection
 
-
+    @section('pop')
     <div class="modal fade" id="tcModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Privacy Policy</h5>
+            <h5 class="modal-title text-info">Privacy Policy</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body text-primary">
             All Terms and conditions will be here
           </div>
           <div class="modal-footer">
@@ -123,3 +128,4 @@
         </div>
       </div>
     </div>
+    @endsection

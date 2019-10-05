@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ __('Welcome To Piggy - A self saving statements') }}</title>
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('material') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -17,7 +16,6 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
     <link href="{{ asset('css') }}/search.css" rel="stylesheet" />
-    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -74,7 +72,7 @@
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="{{ asset('js') }}/search.js"></script>
-        <script src="{{ asset('js') }}/removelink.js"></script>
+         <script src="{{ asset('js') }}/progress.js"></script>
         @stack('js')
     </body>
 </html>

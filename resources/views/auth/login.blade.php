@@ -7,7 +7,7 @@
         <h3><q>{{ __('A well planned work produces good results, even in adverse condition.') }}</q></h3>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-        <form class="form" method="POST" action="{{ route('login') }}">
+        <form class="form" method="POST" action="{{ route('login') }}" onsubmit="loadLoginPrgress();">
           @csrf
           <div class="card card-login card-hidden mb-3">
             <div class="card-header card-header-primary text-center">
@@ -55,30 +55,25 @@
                   </div>
                 @endif
               </div>
-              <div class="mt-4 ml-5">
-                {!! captcha_image_html('ExampleCaptcha') !!}
-              </div>
-               <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">perm_identity</i>
-                    </span>
-                  </div>
-                  <input type="text" name="captcha" id="captcha" class="form-control" placeholder="{{ __('Enter above code') }}" required>
-                </div>
-                @if ($errors->has('password'))
-                  <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                    <strong>{{ $errors->first('password') }}</strong>
-                  </div>
-                @endif
-              </div>
             </div>
             <div class="card-footer justify-content-center">
               <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
             </div>
           </div>
         </form>
+        <div>
+          @if (Session::get('successreg'))
+            <div class="alert alert-success alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>{{Session::get('successreg')}}</strong>
+            </div>
+          @endif
+        </div>
+        <div id="login-prgs" style="display: none;">
+          <div class="progress">
+            <div id="login-progress-bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-6">
             @if (Route::has('password.request'))
