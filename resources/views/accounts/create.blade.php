@@ -58,6 +58,7 @@
                   <div class="col-sm-7">
                     <div class="form-group">
                       <select class="form-control{{ $errors->has('account_type') ? ' is-invalid' : '' }}" name = "account_type"  data-style="btn btn-link">
+                        <option value = "" selected disabled>--Select--</option>
                         <option value = "saving">Savings</option>
                         <option value = "current">Current</option>
                       </select>
