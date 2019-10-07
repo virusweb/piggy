@@ -15,7 +15,7 @@ class AccountRequest extends FormRequest
     {
         return [
             'bank_name' => ['required','exists:bank_lists,name'],
-            'account_no' => ['required','numeric','digits_between:1,10'],
+            'account_no' => ['required','numeric','digits_between:1,20'],
             'balance' => ['required','numeric'],
             'account_type' => ['required','in:saving,current']
         ];

@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         LaravelFrontendPresets\MaterialPreset\MaterialPresetServiceProvider::class,
-        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 
