@@ -38,6 +38,12 @@
             <p>{{ __('Fixed Deposits') }}</p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'lic' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('lic.index') }}">
+          <i class="material-icons">donut_small</i>
+            <p>{{ __('LIC Investments') }}</p>
+        </a>
+      </li>
     </ul>
   </div>
 </div>
