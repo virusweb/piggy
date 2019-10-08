@@ -6,16 +6,15 @@ use Auth;
 use App\Models\bank_accounts;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
-use Hashids\Hashids;
+
 
 class BankAccountsController extends Controller
 {
     public function index(bank_accounts $bank_accounts)
     {
         $bank_accounts = (auth()->user()->role === 'admin') ? $bank_accounts : $bank_accounts::where('user_id',auth()->user()->id) ;
-        $hashids = new Hashids();
         $bank_accounts = $bank_accounts->paginate(15);
-        return view('accounts.index', ['bank_accounts' => $bank_accounts,'hash' => $hashids]);
+        return view('accounts.index', ['bank_accounts' => $bank_accounts,'hash' => $this->hashids]);
     }
 
     public function create()
@@ -31,8 +30,7 @@ class BankAccountsController extends Controller
 
     public function edit($id)
     {   
-        $hashids = new Hashids();
-        $id = $hashids->decodeHex($id);
+        $id = $this->hashids->decodeHex($id);
         $bank = bank_accounts::findOrFail($id);
         return view('accounts.edit', compact('bank'));
     }
@@ -45,8 +43,7 @@ class BankAccountsController extends Controller
 
     public function destroy($id)
     {
-        $hashids = new Hashids();
-        $id = $hashids->decodeHex($id);
+        $id = $this->hashids->decodeHex($id);
         $response = bank_accounts::destroy($id);
         return redirect()->route('bank.index')->withStatus(__($response));
     }

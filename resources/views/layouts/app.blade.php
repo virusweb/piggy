@@ -16,6 +16,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
     <link href="{{ asset('css') }}/search.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -36,7 +37,7 @@
         <!-- Plugin for the momentJs  -->
         <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
         <!--  Plugin for Sweet Alert -->
-        <script src="{{ asset('material') }}/js/plugins/sweetalert2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <!-- Forms Validations Plugin -->
         <script src="{{ asset('material') }}/js/plugins/jquery.validate.min.js"></script>
         <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
@@ -72,7 +73,8 @@
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="{{ asset('js') }}/search.js"></script>
-         <script src="{{ asset('js') }}/progress.js"></script>
+        <script src="{{ asset('js') }}/progress.js"></script>
+        @include('sweet::alert')
         @stack('js')
     </body>
 </html>
