@@ -24,7 +24,13 @@
                   <label class="col-sm-2 col-form-label">{{ __('Bank Name') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('bank_name') ? ' has-danger' : '' }}">
-                      <input class="typeahead form-control{{ $errors->has('bank_name') ? ' is-invalid' : '' }}" name="bank_name" id="input-name" type="text" placeholder="{{ __('Ex : State Bank of India') }}" value="{{ old('bank_name') }}" required="true" aria-required="true"/>
+                      
+                      <select class="selectpicker form-control show-tick" data-style="btn-primary" title="Choose one of the following..." data-live-search="true" name="bank_name">
+                        @foreach($bank_lists as $bank_list)
+                          <option value = "{{$bank_list->name}}">{{$bank_list->name}}</option>
+                        @endforeach
+                      </select>
+
                       @if ($errors->has('bank_name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('bank_name') }}</span>
                       @endif
@@ -57,8 +63,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Account Type') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
-                      <select class="form-control{{ $errors->has('account_type') ? ' is-invalid' : '' }}" name = "account_type"  data-style="btn btn-link">
-                        <option value = "" selected disabled>--Select--</option>
+                      <select class="selectpicker form-control show-tick form-control{{ $errors->has('account_type') ? ' is-invalid' : '' }}" name = "account_type" data-style="btn-primary" title="--select--">
                         <option value = "saving">Savings</option>
                         <option value = "current">Current</option>
                       </select>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\bank_accounts;
+use App\Models\bank_lists;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
 
@@ -17,9 +18,9 @@ class BankAccountsController extends Controller
         return view('accounts.index', ['bank_accounts' => $bank_accounts,'hash' => $this->hashids]);
     }
 
-    public function create()
+    public function create(bank_lists $bank_lists)
     {
-        return view('accounts.create');
+        return view('accounts.create',['bank_lists' => $bank_lists->all()]);
     }
 
     public function store(AccountRequest $request,bank_accounts $bank_accounts)

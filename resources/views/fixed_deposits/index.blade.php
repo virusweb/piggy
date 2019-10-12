@@ -73,19 +73,7 @@
                                   <div class="ripple-container"></div>
                                 </a>
 
-                                <button type="button" class="btn btn-danger btn-link" title="delete account" onclick="swal({ 
-                                  title: 'Are you sure?',
-                                  text: 'It will permanently deleted !',
-                                  type: 'warning',
-                                  showCancelButton: true,
-                                  confirmButtonColor: '#3085d6',
-                                  cancelButtonColor: '#d33',
-                                  confirmButtonText: 'Yes, delete it!',
-                                }).then((isConfirm) => {
-                                  if(isConfirm.value)
-                                    $('#deleteFD').submit();
-                                })"
-                                  >
+                                <button type="button" class="btn btn-danger btn-link" title="delete account" onclick="getConfirm();">
                                   <i class="material-icons">close</i>
                                   <div class="ripple-container"></div>
                                 </button>
