@@ -1,0 +1,22 @@
+{
+  "name": "piggy",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virusweb/piggy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/virusweb/piggy/issues"
+  },
+  "homepage": "https://github.com/virusweb/piggy#readme"
+}
