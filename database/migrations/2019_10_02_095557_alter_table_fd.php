@@ -14,8 +14,8 @@ class AlterTableFd extends Migration
     public function up()
     {
         Schema::table('fixed_deposits', function (Blueprint $table) {
-            $table->unsignedBigInteger('bank')->change();
-            $table->foreign('bank')->references('id')->on('bank_accounts');
+            $table->unsignedBigInteger('bank_id');
+            $table->foreign('bank_id')->references('id')->on('bank_accounts')->onDelete('cascade');
         });
     }
 
