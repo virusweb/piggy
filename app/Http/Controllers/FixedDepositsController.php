@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\fixed_deposits;
-use App\Models\bank_lists;
+use App\Models\FixedDeposit;
+use App\Models\BankList;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
@@ -11,13 +11,13 @@ use Redirect;
 
 class FixedDepositsController extends Controller
 {
-    public function index(fixed_deposits $fd)
+    public function index(FixedDeposit $fd)
     {
         $fd = (auth()->user()->role === 'admin') ? $fd : $fd::where('user_id',auth()->user()->id) ;
         return view('fixed_deposits.index', ['fds' => $fd->paginate(15),'hash' => $this->hashids]);
     }
 
-    public function create(bank_lists $bank_lists)
+    public function create(BankList $bank_lists)
     {
         $user_accounts = Auth::user()->accounts;
 
@@ -33,7 +33,7 @@ class FixedDepositsController extends Controller
         ]);
     }
 
-    public function store(Request $request,fixed_deposits $fixed_deposits)
+    public function store(Request $request,FixedDeposit $fixed_deposits)
     {
         try{
             $response = $fixed_deposits->create($request->merge(['user_id' => Auth::id(),'starting_date' => date('Y-m-d', strtotime($request->starting_date)),'ending_date' => date('Y-m-d',strtotime($request->ending_date))])->all());
@@ -45,15 +45,18 @@ class FixedDepositsController extends Controller
         }
     }
 
-    public function show(fixed_deposits $fixed_deposits)
+    public function show(FixedDeposit $fixed_deposits)
     {
         //
     }
 
-    public function edit($id,bank_lists $bank_lists)
+    public function edit($id,BankList $bank_lists)
     {
         $id = $this->hashids->decodeHex($id);
-        $fd = fixed_deposits::findOrFail($id);
+        $fd = FixedDeposit::findOrFail($id);
+
+        $fd->ending_date = date('d-m-Y', strtotime($fd->ending_date));
+        $fd->starting_date = date('d-m-Y', strtotime($fd->starting_date));
 
         return view('fixed_deposits.edit',[
             'fd' => $fd,
@@ -61,15 +64,19 @@ class FixedDepositsController extends Controller
         ]);
     }
 
-    public function update(Request $request, fixed_deposits $fixed_deposits)
+    public function update(Request $request, FixedDeposit $fd)
     {
-        $response = $fixed_deposits->update($request->all());
+        $response = $fd->update($request->merge([
+            'starting_date' => date('Y-m-d', strtotime($request->starting_date)),
+            'ending_date' => date('Y-m-d',strtotime($request->ending_date))
+        ])->all());
+
         return redirect()->route('fd.index')->withStatus(__($response));
     }
 
     public function destroy($id)
     {
-        if(fixed_deposits::destroy($this->hashids->decodeHex($id))){
+        if(FixedDeposit::destroy($this->hashids->decodeHex($id))){
             Alert::success('Fixed deposit has been deleted', 'Success')->persistent('Close');
             return redirect()->route('fd.index');
         }else{

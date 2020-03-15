@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sip;
+use App\Models\Sip;
 use Illuminate\Http\Request;
 
 class SipController extends Controller
@@ -22,22 +22,22 @@ class SipController extends Controller
         //
     }
 
-    public function show(sip $sip)
+    public function show(Sip $sip)
     {
         //
     }
 
-    public function edit(sip $sip)
+    public function edit(Sip $sip)
     {
         //
     }
 
-    public function update(Request $request, sip $sip)
+    public function update(Request $request, Sip $sip)
     {
         //
     }
 
-    public function destroy(sip $sip)
+    public function destroy(Sip $sip)
     {
         //
     }

@@ -15,7 +15,7 @@ function getAccount(bankid) {
 
 $(function () {
     $('#start_date').datetimepicker({
-      format: 'DD/MM/YYYY',
+      format: 'DD-MM-YYYY',
       maxDate : new Date(),
       icons: {
         next: "fa fa-chevron-right",
@@ -24,7 +24,15 @@ $(function () {
     });
 
     $('#end_date').datetimepicker({
-      format: 'DD/MM/YYYY',
+      format: 'DD-MM-YYYY',
+      icons: {
+        next: "fa fa-chevron-right",
+        previous: "fa fa-chevron-left"
+      }
+    });
+
+    $('#edit_start_date').datetimepicker({
+      format: 'DD-MM-YYYY',
       icons: {
         next: "fa fa-chevron-right",
         previous: "fa fa-chevron-left"
@@ -32,7 +40,7 @@ $(function () {
     });
 
     $('#edit_end_date').datetimepicker({
-      format: 'DD/MM/YYYY',
+      format: 'DD-MM-YYYY',
       icons: {
         next: "fa fa-chevron-right",
         previous: "fa fa-chevron-left"
@@ -41,13 +49,13 @@ $(function () {
 });
 
 function setMindate(value) {
-  var from = value.split("/");
+  var from = value.split("-");
   var f = new Date( parseInt(from[2]) + 1, from[1] - 1, from[0])
   $("#end_date").datetimepicker("minDate",f); 
 }
 
 function editMindate(value) {
-  var from = value.split("/");
+  var from = value.split("-");
   var f = new Date( parseInt(from[2]) + 1, from[1] - 1, from[0])
   $("#edit_end_date").datetimepicker("minDate",f); 
 }
@@ -55,15 +63,15 @@ function editMindate(value) {
 function editMatrityAmount(){
   var amount = $("#input-amount").val();
   
-  var startdate = $("#start_date").val().split('/');
+  var startdate = $("#edit_start_date").val().split('-');
       newstartdate = startdate[0]+"-"+startdate[1]+"-"+startdate[2];
       newstartdate = new Date(startdate[1]+"-"+startdate[0]+"-"+startdate[2]);
 
-  var enddate = $("#end_date").val().split('/');
+  var enddate = $("#edit_end_date").val().split('-');
       newenddate = enddate[0]+"-"+enddate[1]+"-"+enddate[2];
       newenddate = new Date(enddate[1]+"-"+enddate[0]+"-"+enddate[2]);
 
-  var intrest = Number($("#intrest-rate").val());
+  var intrest = Number($("#edit-intrest-rate").val());
 
   // get differences in units
   var seconds = Math.floor((newenddate - newstartdate)/1000);
@@ -84,7 +92,7 @@ function editMatrityAmount(){
 function getMatrityAmount(){
   var amount = $("#input-amount").val();
   
-  var startdate = $("#start_date").val().split('/');
+  var startdate = $("#start_date").val().split('-');
       newstartdate = startdate[0]+"-"+startdate[1]+"-"+startdate[2];
       newstartdate = new Date(startdate[1]+"-"+startdate[0]+"-"+startdate[2]);
 

@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\bank_accounts;
-use App\Models\bank_lists;
+use App\Models\BankAccount;
+use App\Models\BankList;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
 
 
 class BankAccountsController extends Controller
 {
-    public function index(bank_accounts $bank_accounts)
+    public function index(BankAccount $bank_accounts)
     {
         $bank_accounts = (auth()->user()->role === 'admin') ? $bank_accounts : $bank_accounts::where('user_id',auth()->user()->id) ;
         $bank_accounts = $bank_accounts->paginate(15);
         return view('accounts.index', ['bank_accounts' => $bank_accounts,'hash' => $this->hashids]);
     }
 
-    public function create(bank_lists $bank_lists)
+    public function create(BankList $bank_lists)
     {
         return view('accounts.create',['bank_lists' => $bank_lists->all()]);
     }
 
-    public function store(AccountRequest $request,bank_accounts $bank_accounts)
+    public function store(AccountRequest $request,BankAccount $bank_accounts)
     {
         $response = $bank_accounts->create($request->merge(['user_id' => Auth::id()])->all());
         return redirect()->route('bank.index')->withStatus(__("Bank Account Added"));
@@ -36,7 +36,7 @@ class BankAccountsController extends Controller
         return view('accounts.edit', compact('bank'));
     }
 
-    public function update(AccountRequest $request, bank_accounts $bank)
+    public function update(AccountRequest $request, BankAccount $bank)
     {
         $response = $bank->update($request->all());
         return redirect()->route('bank.index')->withStatus(__($response));
@@ -45,7 +45,7 @@ class BankAccountsController extends Controller
     public function destroy($id)
     {
         $id = $this->hashids->decodeHex($id);
-        $response = bank_accounts::destroy($id);
+        $response = BankAccount::destroy($id);
         return redirect()->route('bank.index')->withStatus(__($response));
     }
 }

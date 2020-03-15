@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class fixed_deposits extends Model
+class FixedDeposit extends Model
 {
 	protected $fillable = [
         'user_id', 'amount', 'account_no', 'bank_id','branch','starting_date','ending_date','intrest_rate','maturity_amount','auto_renewal','auto_closer','receipt_no'
@@ -17,6 +17,6 @@ class fixed_deposits extends Model
 
     public function bank()
     {
-        return $this->hasOne('App\Models\bank_lists','id','bank_id');
+        return $this->hasOne('App\Models\BankList','id','bank_id');
     }
 }

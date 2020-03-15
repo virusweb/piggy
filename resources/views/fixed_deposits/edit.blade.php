@@ -79,7 +79,7 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('end_date') ? ' has-danger' : '' }}">
-                      <input type="text" placeholder="{{ __('Ending Date') }}" name="ending_date" class="form-control datetimepicker" id="edit_end_date" value="{{ old('ending_date',$fd->ending_date) }}" onblur="editMatrityAmount();" required/>
+                      <input type="text" placeholder="{{ __('Ending Date') }}" id="edit_end_date" name="ending_date" class="form-control datetimepicker" value="{{ old('ending_date',$fd->ending_date) }}" onblur="editMatrityAmount();" required/>
 
                       @if ($errors->has('ending_date'))
                         <span id="amount-error" class="error text-danger" for="input-end-date">{{ $errors->first('ending_date') }}</span>
@@ -92,7 +92,7 @@
                   <label class="col-sm-2 col-form-label" for="input-st-date">{{ __('Intrest rate') }}</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('intrest_rate') ? ' has-danger' : '' }}">
-                      <input type="number" step="any" min="5" max="15" placeholder="{{ __('7.2') }}" name="intrest_rate" class="form-control" id="intrest-rate" value="{{ old('intrest_rate',$fd->intrest_rate) }}" onblur="editMatrityAmount();" required />
+                      <input type="number" step="any" min="5" max="15" placeholder="{{ __('7.2') }}" name="intrest_rate" class="form-control" id="edit-intrest-rate" value="{{ old('intrest_rate',$fd->intrest_rate) }}" onblur="editMatrityAmount();" required />
 
                       @if ($errors->has('start_date'))
                         <span id="st-error" class="error text-danger" for="input-intrest-rate">{{ $errors->first('start_date') }}</span>
@@ -171,7 +171,7 @@
                   <div class="form-group{{ $errors->has('receipt_no') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('receipt_no') ? ' is-invalid' : '' }}" input type="number" name="receipt_no" id="input-recept" placeholder="{{ __('1582...') }}" value="{{ old('receipt_no',$fd->receipt_no) }}"  />
                     @if ($errors->has('receipt_no'))
-                      <span id="amount-error" class="error text-danger" for="input-amount">{{ $errors->first('receipt_no') }}</span>
+                      <span id="recept-error" class="error text-danger" for="input-recept">{{ $errors->first('receipt_no') }}</span>
                     @endif
                   </div>
                 </div>

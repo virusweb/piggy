@@ -24,6 +24,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function accounts()
     {
-        return $this->hasMany('App\Models\bank_accounts');
+        return $this->hasMany('App\Models\BankAccount');
+    }
+
+    public function fixed_deposits()
+    {
+        return $this->hasMany('App\Models\FixedDeposit');
     }
 }
