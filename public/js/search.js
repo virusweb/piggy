@@ -30,12 +30,55 @@ $(function () {
         previous: "fa fa-chevron-left"
       }
     });
+
+    $('#edit_end_date').datetimepicker({
+      format: 'DD/MM/YYYY',
+      icons: {
+        next: "fa fa-chevron-right",
+        previous: "fa fa-chevron-left"
+      }
+    });
 });
 
 function setMindate(value) {
   var from = value.split("/");
   var f = new Date( parseInt(from[2]) + 1, from[1] - 1, from[0])
   $("#end_date").datetimepicker("minDate",f); 
+}
+
+function editMindate(value) {
+  var from = value.split("/");
+  var f = new Date( parseInt(from[2]) + 1, from[1] - 1, from[0])
+  $("#edit_end_date").datetimepicker("minDate",f); 
+}
+
+function editMatrityAmount(){
+  var amount = $("#input-amount").val();
+  
+  var startdate = $("#start_date").val().split('/');
+      newstartdate = startdate[0]+"-"+startdate[1]+"-"+startdate[2];
+      newstartdate = new Date(startdate[1]+"-"+startdate[0]+"-"+startdate[2]);
+
+  var enddate = $("#end_date").val().split('/');
+      newenddate = enddate[0]+"-"+enddate[1]+"-"+enddate[2];
+      newenddate = new Date(enddate[1]+"-"+enddate[0]+"-"+enddate[2]);
+
+  var intrest = Number($("#intrest-rate").val());
+
+  // get differences in units
+  var seconds = Math.floor((newenddate - newstartdate)/1000);
+  var minutes = Math.floor(seconds/60);
+  var hours = Math.floor(minutes/60);
+  var days = Math.floor(hours/24);
+  var years = Number(Math.floor(days/365));
+
+  if(years > 0)  
+  var maturityamount = (((amount/100)*intrest) * years);
+
+  if(maturityamount){
+    var total = Number(maturityamount)+ Number(amount);
+    $("#maturity_amount").val(total);
+  }
 }
 
 function getMatrityAmount(){
@@ -73,6 +116,10 @@ function getConfirm() {
       dangerMode: true,
       buttons: true,
     }).then((isConfirm) => {
-        $('#deleteFD').submit();
+        if(isConfirm){
+          $('#deleteFD').submit();
+        }else{
+          swal("Cancelled","FD not deleted","error");
+        }
     })
 }

@@ -59,7 +59,7 @@
                         <tr>
                           <td>{{ $key + $fds->firstItem() }}</td>
                           <td>
-                            {{ $fd->bank }}
+                            {{ $fd->bank->name }}
                           </td>
                           <td>
                             {{ $fd->account_no }}
