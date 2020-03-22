@@ -1,7 +1,7 @@
 function getAccount(bankid) {
   $.ajax({
     type:"POST",
-    url: "../getaccountno",
+    url:"../getaccountno",
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
     data: {bank:bankid},
     success: function(result) {

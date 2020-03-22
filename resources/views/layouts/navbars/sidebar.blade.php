@@ -18,7 +18,7 @@
             <p>{{ __('Bank Accounts') }}</p>
         </a>
       </li>
-      @if(Auth::user()->role === 'admin')
+      @if(Auth::user()->role == 'admin')
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
@@ -36,6 +36,12 @@
         <a class="nav-link" href="{{ route('fd.index') }}">
           <i class="material-icons">description</i>
             <p>{{ __('Fixed Deposits') }}</p>
+        </a>
+      </li>
+       <li class="nav-item{{ $activePage == 'sip' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('sip.index') }}">
+          <i class="material-icons">trending_up</i>
+            <p>{{ __('SIPs') }}</p>
         </a>
       </li>
     </ul>

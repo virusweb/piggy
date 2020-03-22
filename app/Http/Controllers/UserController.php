@@ -21,8 +21,14 @@ class UserController extends Controller
 
     public function store(UserRequest $request, User $user)
     {
-        $data = $request->merge(['password' => Hash::make($request->get('password'))])->all();
-        $response = $user->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        $data = $request->merge([
+            'password' => Hash::make($request->get('password'))
+        ])->all();
+
+        $response = $user->create($request->merge([
+            'password' => Hash::make($request->get('password'))
+        ])->all());
+
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
@@ -36,9 +42,9 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User  $user)
     {
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except([$request->get('password') ? '' : 'password']
+        $user->update($request->merge([
+                'password' => Hash::make($request->get('password'))
+            ])->except([$request->get('password') ? '' : 'password']
         ));
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));

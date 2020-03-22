@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class SipController extends Controller
 {
-    public function index()
+    public function index(Sip $sip)
     {
-        //
+        $sip = (auth()->user()->role == 'admin') ? $sip : $sip::where('user_id',auth()->user()->id) ;
+
+        return view('sips.index', ['sips' => $sip->paginate(15),'hash' => $this->hashids]);
     }
 
     public function create()
     {
-        //
+        return view('sips.create',['user_bank_acconts' => auth()->user()->accounts,'hash' => $this->hashids]);
     }
 
     public function store(Request $request)

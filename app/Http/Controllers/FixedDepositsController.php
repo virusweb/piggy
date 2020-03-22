@@ -35,12 +35,21 @@ class FixedDepositsController extends Controller
 
     public function store(Request $request,FixedDeposit $fixed_deposits)
     {
-        try{
-            $response = $fixed_deposits->create($request->merge(['user_id' => Auth::id(),'starting_date' => date('Y-m-d', strtotime($request->starting_date)),'ending_date' => date('Y-m-d',strtotime($request->ending_date))])->all());
+        
+        $response = $fixed_deposits->create($request->merge([
+            'user_id' => Auth::id(),
+            'starting_date' => date('Y-m-d', strtotime($request->starting_date)),
+            'ending_date' => date('Y-m-d',strtotime($request->ending_date))
+        ])->all());
+
+        if($response)
+        {
             Alert::success('Fixed deposit has been added', 'Success')->persistent('Close');
             return redirect()->route('fd.index');
-        }catch(\Exception $e){
-            Alert::error($e->getMessage(), 'Error!')->persistent('Close');
+        }
+        else
+        {
+            Alert::error('Fixed deposit not added', 'Error!')->persistent('Close');
             return Redirect::back();
         }
     }
@@ -71,15 +80,22 @@ class FixedDepositsController extends Controller
             'ending_date' => date('Y-m-d',strtotime($request->ending_date))
         ])->all());
 
-        return redirect()->route('fd.index')->withStatus(__($response));
+        if($response)
+        {
+            Alert::success('Fixed deposit has been updated', 'Success')->persistent('Close');
+            return redirect()->route('fd.index')->withStatus(__($response));
+        }
     }
 
     public function destroy($id)
     {
-        if(FixedDeposit::destroy($this->hashids->decodeHex($id))){
+        if(FixedDeposit::destroy($this->hashids->decodeHex($id)))
+        {
             Alert::success('Fixed deposit has been deleted', 'Success')->persistent('Close');
             return redirect()->route('fd.index');
-        }else{
+        }
+        else
+        {
             Alert::error('Error in fixed Deposit deletion','Error !')->persistent('Close');
             return Redirect::back();
         }

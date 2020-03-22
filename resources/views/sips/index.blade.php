@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'fd', 'titlePage' => __('Your Fixed Deposits')])
+@extends('layouts.app', ['activePage' => 'sip', 'titlePage' => __('Your SIP(s)')])
 
 @section('content')
   <div class="content">
@@ -7,13 +7,13 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title ">{{ __('FDs') }}</h4>
-                <p class="card-category"> {{ __('Here you can manage your fixed deposits') }}</p>
+                <h4 class="card-title ">{{ __('Systematic Investment Plans') }}</h4>
+                <p class="card-category"> {{ __('Here you can manage your SIP(s)') }}</p>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('fd.create') }}" class="btn btn-sm btn-primary">{{ __('Add FD') }}</a>
+                    <a href="{{ route('sip.create') }}" class="btn btn-sm btn-primary">{{ __('Add SIP') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
@@ -21,36 +21,36 @@
                     <thead class=" text-primary">
                       <th>Sr.No</th>
                       <th>
-                          {{ __('Bank') }}
+                          {{ __('Scheme Name') }}
                       </th>
                       <th>
-                        {{ __('FD Account') }}
+                        {{ __('Folio No.') }}
                       </th>
                       <th class="text-right">
                         {{ __('Actions') }}
                       </th>
                     </thead>
                     <tbody>
-                    @if($fds->count() > 0)
-                      @foreach($fds as $key => $fd)
+                    @if($sips->count() > 0)
+                      @foreach($sips as $key => $sip)
                         <tr>
-                          <td>{{ $key + $fds->firstItem() }}</td>
+                          <td>{{ $key + $sip->firstItem() }}</td>
                           <td>
-                            {{ $fd->bank->name }}
+                            {{ $fd->id }}
                           </td>
                           <td>
-                            {{ $fd->account_no }}
+                            {{ $fd->folio_no }}
                           </td>
                           <td class="td-actions text-right">
-                            <form action="{{ route('fd.destroy',$hash->encodeHex($fd->id)) }}" method="post" id="deleteFD">
+                            <form action="{{ route('sip.destroy',$hash->encodeHex($sip->id)) }}" method="post" id="deleteFD">
                                 @csrf
                                 @method('delete')
-                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fd.edit',$hash->encodeHex($fd->id)) }}">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('sip.edit',$hash->encodeHex($sip->id)) }}">
                                   <i class="material-icons">edit</i>
                                   <div class="ripple-container"></div>
                                 </a>
 
-                                <button type="button" class="btn btn-danger btn-link" title="delete account" onclick="getConfirm();">
+                                <button type="button" class="btn btn-danger btn-link" title="delete account">
                                   <i class="material-icons">close</i>
                                   <div class="ripple-container"></div>
                                 </button>
@@ -59,11 +59,11 @@
                         </tr>
                       @endforeach
                     @else
-                      <td colspan = "5" align = "center">No FD Accounts</td>
+                      <td colspan = "5" align = "center">No Sip(s)</td>
                     @endif
                     </tbody>
                   </table>
-                  <span class="pull-right">{{ $fds->links() }}</span>
+                  <span class="pull-right">{{ $sips->links() }}</span>
                 </div>
               </div>
             </div>

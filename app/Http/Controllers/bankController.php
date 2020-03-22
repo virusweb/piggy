@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\BankList;
 use App\Models\BankAccount;
 
-class bankController extends Controller
+class BankController extends Controller
 {
     public function autocomplete(Request $request)
     {
